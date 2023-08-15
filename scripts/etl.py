@@ -467,7 +467,7 @@ df = df.withColumn("CLASSE VOLTA", F.when(
 df = df.withColumn("CLASSE IDA", F.when(
     F.col("CLASSE IDA") == "NA", None).otherwise(F.col("CLASSE IDA")))
 
-winSpec = Window.partitionBy("MES").orderBy("ANO")
+winSpec = Window.partitionBy("ANO").orderBy("MES")
 df = df.withColumn("ID", F.row_number().over(winSpec))
 
 df = df.select("ID", "ANO", "MES", "ICAO", "EMPRESA", "CLASSE IDA",

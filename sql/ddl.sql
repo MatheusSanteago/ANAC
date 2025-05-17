@@ -1,4 +1,4 @@
-CREATE SCHEMA anac;
+CREATE SCHEMA if not exists anac;
 
 COMMENT ON SCHEMA anac is 'Dados do projeto ANAC';
 
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS anac.voos_nacionais (
     destino TEXT,
     tarifa INTEGER,
     assentos INTEGER,
-    ingestion_time TIMESTAMP
+    ingestion_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS anac.voos_internacionais (
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS anac.voos_internacionais (
     classe_volta TEXT,
     tarifa INTEGER,
     assentos INTEGER,
-    ingestion_time TIMESTAMP
+    ingestion_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Comentário para a tabela voos_nacionais

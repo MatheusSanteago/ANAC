@@ -1,0 +1,40 @@
+name: DemoANAC
+on: 
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run a one-line script
+      run: echo Hello, world!
+
+  deploy-dev:
+    runs-on: ubuntu-latest
+    environment:
+      name: dev
+      url: 'google.com.br'
+    needs: build
+    steps:
+      - name: Run a one line
+        run: echo Deploy dev
+
+  deploy-hmg:
+    runs-on: ubuntu-latest
+    environment:
+      name: hmg
+      url: 'google.com.br'
+    needs: deploy-dev
+    steps:
+      - name: Run a one line
+        run: echo Deploy hmg
+
+  deploy-prd:
+    runs-on: ubuntu-latest
+    environment:
+      name: prd
+      url: 'google.com.br'
+    needs: deploy-hmg
+    steps:
+      - name: Run a one line
+        run: echo Deploy prd
